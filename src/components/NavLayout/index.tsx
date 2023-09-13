@@ -1,6 +1,5 @@
 import { PropsWithChildren } from 'react';
 import { useLocation } from 'react-router-dom';
-import * as routes from "../../core/routes/ConstantRoute";
 
 // Components
 import Navbar from '../Navbar';
