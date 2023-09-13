@@ -5,7 +5,7 @@ type ActionType = {
     type: string;
     units: Unit[];
 }
-export const unitReducer = (state = [], action: ActionType) => {
+export const unitReducer = (state: Unit[] = [], action: ActionType) => {
     switch (action.type) {
         case Types.UNIT_READ_SUCCESS:
             return action.units;
