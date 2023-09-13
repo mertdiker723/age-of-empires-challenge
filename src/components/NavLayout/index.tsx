@@ -7,11 +7,11 @@ import Navbar from '../Navbar';
 
 const NavLayout = ({ children }: PropsWithChildren) => {
     let location = useLocation();
-    const routeItems: string[] = [routes.HOME, routes.UNITS, routes.UNIT_DETAILS];
+    const routeItems: string[] = ["/", "/units", "/unitDetails"];
 
     return (
         <div>
-            {routeItems.includes(location.pathname) && <Navbar />}
+            {routeItems.includes(`/${location.pathname.split("/")[1]}`) && <Navbar />}
             {children}
         </div>
     )
