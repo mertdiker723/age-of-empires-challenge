@@ -19,8 +19,6 @@ const UnitTable = () => {
 
     const stateString = useStateString();
 
-    console.log(stateString);
-    
     useEffect(() => {
         dispatch(loadUnits(Types.UNIT_READ_SUCCESS))
     }, [dispatch])
@@ -29,7 +27,7 @@ const UnitTable = () => {
             return counter;
         }
         return counter.filter(item => item.age === stateString.age);
-    }, [stateString, counter]);
+    }, [stateString.age, counter]);
 
     const costRenderer = (item: Cost | undefined) => {
         if (!item) {

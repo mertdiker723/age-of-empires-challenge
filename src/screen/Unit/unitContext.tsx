@@ -1,25 +1,48 @@
 import { Fragment, createContext, useContext, useReducer } from "react";
 
-type InitialStateType = {
+export type InitialStateType = {
     age?: string;
-    checkbox: boolean;
+    checkbox?: {
+        wood?: boolean,
+        food?: boolean,
+        gold?: boolean
+    };
+    costs?: {
+        woodSlider?: number,
+        foodSlider?: number,
+        goldSlider?: number,
+    }
 };
 
 const initialState: InitialStateType = {
     age: "All",
-    checkbox: false
+    checkbox: {
+        wood: false,
+        food: false,
+        gold: false
+    },
+    costs: {
+        woodSlider: 0,
+        foodSlider: 0,
+        goldSlider: 0,
+    }
 };
 
 const StringContext = createContext<InitialStateType | undefined>(undefined);
-const DispatchContext = createContext<React.Dispatch<{ type: string; payload: Partial<InitialStateType> }>>(() => { });
+const DispatchContext = createContext<React.Dispatch<{ type: string; payload: InitialStateType }>>(() => { });
 
-const unitEditReducer = (state: InitialStateType, action: { type: string; payload: Partial<InitialStateType> }): InitialStateType => {
+const unitEditReducer = (state: InitialStateType, action: { type: string; payload: InitialStateType }): InitialStateType => {
     const { type, payload } = action;
-    console.log(payload);
 
     switch (type) {
         case "AGE": {
             return { ...state, age: payload.age };
+        }
+        case "CHECKBOX": {
+            return { ...state, checkbox: payload.checkbox };
+        }
+        case "SLIDER": {
+            return { ...state, costs: payload.costs };
         }
         default:
             return state;
@@ -53,5 +76,5 @@ export function useStateDispatch() {
     if (context === undefined) {
         throw new Error("useStateDispatch must be used within a UnitEditContext");
     }
-    return (action: { type: string; payload: Partial<InitialStateType> }) => context(action);
+    return (action: { type: string; payload: InitialStateType }) => context(action);
 }

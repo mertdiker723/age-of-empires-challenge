@@ -1,18 +1,48 @@
 import { useState } from 'react';
-
 // Material UI
-import { Box, Checkbox, Grid, Typography } from '@mui/material';
+import { Box, Checkbox, Grid, Typography, debounce } from '@mui/material';
+
+// Screen
+import { useStateDispatch, useStateString } from '../../../screen/Unit/unitContext';
 
 // Assest & Styles
 import { PrettoSlider } from '../../../assets/MuiStyleComponents/style';
 import "./Style.scss";
 
 const Costs = () => {
-    const [checked, setChecked] = useState(true);
+    // Context
+    const dispatch = useStateDispatch();
+    const stateString = useStateString();
+
+
+    const debouncedUpdateState = debounce((nameSlider: string, newValue: number | number[]) => {
+        dispatch({
+            type: "SLIDER", payload: {
+                costs: {
+                    ...stateString.costs,
+                    [nameSlider]: newValue
+                }
+            }
+        })
+    }, 300);
+
+    const handleSliderChange = (nameSlider: string, event: Event, newValue: number | number[]) => {
+        debouncedUpdateState(nameSlider, newValue)
+    };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setChecked(event.target.checked);
+        const { name } = event.target;
+        const payload = {
+            checkbox: {
+                ...stateString.checkbox,
+                [name]: event.target.checked
+            }
+        }
+        dispatch({
+            type: "CHECKBOX", payload
+        })
     };
+
     return (
         <Grid container spacing={2} mt={2} className='cost-container'>
             <Grid item xs={12}>
@@ -25,8 +55,9 @@ const Costs = () => {
                 <Grid container>
                     <Grid item xs={12} sm={12} md={2} display="flex" alignItems="center">
                         <Checkbox
-                            checked={checked}
+                            checked={stateString.checkbox?.wood}
                             onChange={handleChange}
+                            name="wood"
                             color="default"
                             id='woodCheckbox'
                             inputProps={{ 'aria-label': 'controlled' }}
@@ -40,7 +71,10 @@ const Costs = () => {
                             <PrettoSlider
                                 valueLabelDisplay="auto"
                                 aria-label="pretto slider"
+                                onChange={(event, newValue) => handleSliderChange("woodSlider", event, newValue)}
+                                name='woodSlider'
                                 max={200}
+                                disabled={!stateString.checkbox?.wood}
                                 min={0}
 
                             />
@@ -48,13 +82,14 @@ const Costs = () => {
                     </Grid>
                     <Grid item xs={12} sm={12} md={2} display="flex" alignItems="center">
                         <Checkbox
-                            checked={checked}
+                            checked={stateString.checkbox?.food}
                             onChange={handleChange}
                             color="default"
-                            id='woodCheckbox'
+                            name='food'
+                            id='foodCheckbox'
                             inputProps={{ 'aria-label': 'controlled' }}
                         />
-                        <label htmlFor="woodCheckbox" className='range-header'>
+                        <label htmlFor="foodCheckbox" className='range-header'>
                             Food
                         </label>
                     </Grid>
@@ -63,7 +98,10 @@ const Costs = () => {
                             <PrettoSlider
                                 valueLabelDisplay="auto"
                                 aria-label="pretto slider"
+                                name='foodSlider'
+                                onChange={(event, newValue) => handleSliderChange("foodSlider", event, newValue)}
                                 max={200}
+                                disabled={!stateString.checkbox?.food}
                                 min={0}
 
                             />
@@ -71,13 +109,14 @@ const Costs = () => {
                     </Grid>
                     <Grid item xs={12} sm={12} md={2} display="flex" alignItems="center">
                         <Checkbox
-                            checked={checked}
+                            checked={stateString.checkbox?.gold}
                             onChange={handleChange}
                             color="default"
-                            id='woodCheckbox'
+                            name="gold"
+                            id='goldCheckbox'
                             inputProps={{ 'aria-label': 'controlled' }}
                         />
-                        <label htmlFor="woodCheckbox" className='range-header'>
+                        <label htmlFor="goldCheckbox" className='range-header'>
                             Gold
                         </label>
                     </Grid>
@@ -86,14 +125,14 @@ const Costs = () => {
                             <PrettoSlider
                                 valueLabelDisplay="auto"
                                 aria-label="pretto slider"
+                                name='goldSlider'
+                                onChange={(event, newValue) => handleSliderChange("goldSlider", event, newValue)}
                                 max={200}
+                                disabled={!stateString.checkbox?.gold}
                                 min={0}
-
                             />
                         </Box>
                     </Grid>
-
-
                 </Grid>
             </Grid>
         </Grid>
