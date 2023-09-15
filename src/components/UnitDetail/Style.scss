@@ -1,0 +1,36 @@
+.table-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    max-width: 50%;
+
+    &_header {
+        border: 1px solid;
+        min-height: 36px;
+        padding: 1px 10px 1px 10px;
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        font-family: ComicNeueBold;
+        .text-item {
+            font-family: ComicNeueRegular;
+            margin-left: 10px;
+            font-size: 18px;
+        }
+
+        &:nth-child(even) {
+            border-bottom-color: white;
+            border-top-color: white;
+        }
+
+        &:last-child {
+            border-bottom-color: black;
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .table-container {
+        max-width: 100%;
+    }
+  }

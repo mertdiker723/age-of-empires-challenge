@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom";
 
 // Material UI
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box } from '@mui/material';
+import { Box } from '@mui/material';
 
 // Screen
 import { useStateString } from "../../../screen/Unit/unitContext";
@@ -89,34 +89,32 @@ const UnitTable = () => {
                         <FacebookCircularProgress />
                     </Box>
                 ) : (
-                    <TableContainer component={Paper} sx={{ mt: 2 }}>
-                        <Table aria-label="caption table" sx={{ minWidth: 650 }}>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell align="left">#id</TableCell>
-                                    <TableCell align="center">name</TableCell>
-                                    <TableCell align="center">age</TableCell>
-                                    <TableCell align="center">costs</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
+                    <div className="unit-table-container">
+                        <table className="table">
+                            <thead>
+                                <tr className="unit-table-header-row">
+                                    <th className="unit-table-header-row_item" scope="col">id</th>
+                                    <th className="unit-table-header-row_item" scope="col">name</th>
+                                    <th className="unit-table-header-row_item" scope="col">age</th>
+                                    <th className="unit-table-header-row_item" scope="col">costs</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 {filteredUnits().map((row) => (
-                                    <TableRow
+                                    <tr
                                         key={row.id}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                        className="unit-table-row"
-                                        hover
+                                        className="unit-table-body-row"
                                         onClick={() => linkUnitDetails(row.id)}
                                     >
-                                        <TableCell align="left">{row.id}</TableCell>
-                                        <TableCell align="center">{row.name}</TableCell>
-                                        <TableCell align="center">{row.age}</TableCell>
-                                        <TableCell align="center">{costRenderer(row.cost)}</TableCell>
-                                    </TableRow>
+                                        <td className="unit-table-body-row_item" align="left">{row.id}</td>
+                                        <td className="unit-table-body-row_item" align="center">{row.name}</td>
+                                        <td className="unit-table-body-row_item" align="center">{row.age}</td>
+                                        <td className="unit-table-body-row_item" align="center">{costRenderer(row.cost)}</td>
+                                    </tr>
                                 ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
+                            </tbody>
+                        </table>
+                    </div>
                 )
             }
         </div>

@@ -1,8 +1,11 @@
-import { useEffect, useReducer, useCallback, ReactNode } from 'react';
+import { useEffect, useReducer, useCallback, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 // Material UI
 import { Alert, Stack, Box } from '@mui/material';
+
+// Components
+import UnitDetailTable from '../../components/UnitDetail';
 
 // Common
 import FacebookCircularProgress from '../../common/Loader/facebookCircularProgress';
@@ -64,8 +67,10 @@ const UnitDetail = () => {
         "armor",
         "blast_radius"
     ];
-
-    const renderUnits = selectedUnit && Object.entries(selectedUnit).filter(([key]) => !keysToExclude.includes(key));
+    const filteredUnits = useMemo(() => () => {
+        const renderUnits = selectedUnit && Object.entries(selectedUnit).filter(([key]) => !keysToExclude.includes(key));
+        return renderUnits;
+    }, [selectedUnit])
 
     return (
         <>
@@ -85,30 +90,7 @@ const UnitDetail = () => {
                     </Alert>
                 </Stack>
             )}
-
-            <div className='table-container'>
-                {
-                    renderUnits && renderUnits.map(([key, value], index) => {
-                        const title = key.split('').map((char, index) => (index === 0 ? char.toUpperCase() : char.replace(/_/g, ' '))).join('');
-
-                        return value !== null && typeof value === 'object' ? Object.entries(value).map(([costKey, costValue], indexNested) => {
-                            return (
-                                <div className='table-container_header' key={indexNested}>
-                                    {costKey} {title}:
-                                    <span className='text-item'>{costValue as ReactNode}</span>
-                                </div>
-                            )
-                        })
-                            : (
-                                <div className='table-container_header' key={index}>
-                                    {title}:
-                                    <span className='text-item'>{value}</span>
-                                </div>
-                            )
-                    })
-                }
-
-            </div>
+            <UnitDetailTable renderUnits={filteredUnits()} />
         </>
     )
 }
