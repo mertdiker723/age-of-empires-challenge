@@ -33,21 +33,14 @@ const UnitTable = () => {
         dispatch(loadUnits(Types.UNIT_READ_SUCCESS))
     }, [dispatch]);
 
-    const filteredUnits = useMemo(() => () => {
-        if (age === "All") {
-            if (food || wood || gold) {
-                return counter.filter(item => {
-                    return (food ? (item.cost?.Food || 0) <= costs.foodSlider : true) &&
-                        (wood ? (item.cost?.Wood || 0) <= costs.woodSlider : true) &&
-                        (gold ? (item.cost?.Gold || 0) <= costs.goldSlider : true)
-                });
-            }
-            return counter;
-        }
-        return counter.filter(item => item.age === age).filter(item => {
-            return (food ? (item.cost?.Food || 0) <= costs.foodSlider : true) &&
-                (wood ? (item.cost?.Wood || 0) <= costs.woodSlider : true) &&
-                (gold ? (item.cost?.Gold || 0) <= costs.goldSlider : true)
+    const filteredUnits = useMemo(() => {
+        return counter.filter((item) => {
+            return (
+                (age === "All" || item.age === age) &&
+                (!food || (item.cost?.Food || 0) <= costs.foodSlider) &&
+                (!wood || (item.cost?.Wood || 0) <= costs.woodSlider) &&
+                (!gold || (item.cost?.Gold || 0) <= costs.goldSlider)
+            );
         });
     }, [age, counter, costs, food, wood, gold]);
 
@@ -82,7 +75,7 @@ const UnitTable = () => {
     }
     return (
         <div className="unit-table-container">
-            <div className="total-count">Unit Count: ({filteredUnits().length})</div>
+            <div className="total-count">Unit Count: ({filteredUnits.length})</div>
             {
                 counter.length === 0 ? (
                     <Box display="flex" justifyContent="center">
@@ -100,7 +93,7 @@ const UnitTable = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {filteredUnits().map((row) => (
+                                {filteredUnits.map((row) => (
                                     <tr
                                         key={row.id}
                                         className="unit-table-body-row"

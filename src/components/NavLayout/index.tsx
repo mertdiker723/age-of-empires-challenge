@@ -9,10 +9,10 @@ const NavLayout = ({ children }: PropsWithChildren) => {
     const routeItems: string[] = ["/", "/units", "/unitDetails"];
 
     return (
-        <div>
+        <>
             {routeItems.includes(`/${location.pathname.split("/")[1]}`) && <Navbar />}
             {children}
-        </div>
+        </>
     )
 }
 
