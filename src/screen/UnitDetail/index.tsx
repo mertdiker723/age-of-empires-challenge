@@ -57,17 +57,17 @@ const UnitDetail = () => {
         fetchData();
     }, [fetchData]);
 
-    const keysToExclude = [
-        "attack_bonus",
-        "line_of_sight",
-        "movement_rate",
-        "armor_bonus",
-        "expansion",
-        "range",
-        "armor",
-        "blast_radius"
-    ];
     const filteredUnits = useMemo(() => () => {
+        const keysToExclude = [
+            "attack_bonus",
+            "line_of_sight",
+            "movement_rate",
+            "armor_bonus",
+            "expansion",
+            "range",
+            "armor",
+            "blast_radius"
+        ];
         const renderUnits = selectedUnit && Object.entries(selectedUnit).filter(([key]) => !keysToExclude.includes(key));
         return renderUnits;
     }, [selectedUnit])
