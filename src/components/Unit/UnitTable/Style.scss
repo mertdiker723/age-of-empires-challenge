@@ -1,4 +1,14 @@
-.unit-table-row {
-    cursor: pointer;
-    user-select: none;
+.unit-table-container {
+
+    .total-count {
+        display: flex;
+        justify-content: flex-end;
+        font-family: ComicNeueBold;
+        margin-top: 10px;
+    }
+
+    .unit-table-row {
+        cursor: pointer;
+        user-select: none;
+    }
 }

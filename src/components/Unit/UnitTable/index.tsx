@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom";
 
 // Material UI
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, CircularProgress } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box } from '@mui/material';
 
 // Screen
 import { useStateString } from "../../../screen/Unit/unitContext";
+
+// Common
+import FacebookCircularProgress from "../../../common/Loader/facebookCircularProgress";
 
 // Core
 import { Types } from '../../../core/redux/action/actionTypes';
@@ -78,43 +81,45 @@ const UnitTable = () => {
         navigate(`/unitDetails/${id}`)
     }
     return (
-        <>
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>({filteredUnits().length})</div>
+        <div className="unit-table-container">
+            <div className="total-count">Unit Count: ({filteredUnits().length})</div>
             {
                 counter.length === 0 ? (
                     <Box display="flex" justifyContent="center">
-                        <CircularProgress />
+                        <FacebookCircularProgress />
                     </Box>
-                ) : <TableContainer component={Paper} sx={{ mt: 2 }}>
-                    <Table aria-label="caption table" sx={{ minWidth: 650 }}>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align="left">#id</TableCell>
-                                <TableCell align="center">name</TableCell>
-                                <TableCell align="center">age</TableCell>
-                                <TableCell align="center">costs</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {filteredUnits().map((row) => (
-                                <TableRow
-                                    key={row.id}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    className="unit-table-row"
-                                    hover
-                                    onClick={() => linkUnitDetails(row.id)}
-                                >
-                                    <TableCell align="left">{row.id}</TableCell>
-                                    <TableCell align="center">{row.name}</TableCell>
-                                    <TableCell align="center">{row.age}</TableCell>
-                                    <TableCell align="center">{costRenderer(row.cost)}</TableCell>
+                ) : (
+                    <TableContainer component={Paper} sx={{ mt: 2 }}>
+                        <Table aria-label="caption table" sx={{ minWidth: 650 }}>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="left">#id</TableCell>
+                                    <TableCell align="center">name</TableCell>
+                                    <TableCell align="center">age</TableCell>
+                                    <TableCell align="center">costs</TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                            </TableHead>
+                            <TableBody>
+                                {filteredUnits().map((row) => (
+                                    <TableRow
+                                        key={row.id}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        className="unit-table-row"
+                                        hover
+                                        onClick={() => linkUnitDetails(row.id)}
+                                    >
+                                        <TableCell align="left">{row.id}</TableCell>
+                                        <TableCell align="center">{row.name}</TableCell>
+                                        <TableCell align="center">{row.age}</TableCell>
+                                        <TableCell align="center">{costRenderer(row.cost)}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                )
             }
-        </>
+        </div>
 
     );
 }

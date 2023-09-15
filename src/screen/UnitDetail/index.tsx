@@ -2,7 +2,11 @@ import { useEffect, useReducer, useCallback, ReactNode } from 'react';
 import { useParams } from 'react-router-dom';
 
 // Material UI
-import { Alert, Stack, Box, CircularProgress } from '@mui/material';
+import { Alert, Stack, Box } from '@mui/material';
+
+// Common
+import FacebookCircularProgress from '../../common/Loader/facebookCircularProgress';
+
 // Core
 import { getSelectedUnit } from '../../db-mock/unitFetch';
 import { Unit } from '../../core/types';
@@ -68,7 +72,7 @@ const UnitDetail = () => {
             {
                 loading && (
                     <Box display="flex" mt={5} justifyContent="center">
-                        <CircularProgress />
+                        <FacebookCircularProgress />
                     </Box>
                 )
             }

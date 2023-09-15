@@ -1,0 +1,10 @@
+.home-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    &_image {
+        object-fit: cover;
+        width: 100%;
+        max-width: 900px;
+    }
+}

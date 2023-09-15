@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 
 // Material UI
-import { Container } from "@mui/material";
+import { Container, LinearProgress } from "@mui/material";
 
 // Screen
 import PageNotFound from "./screen/NotFound";
@@ -18,9 +18,9 @@ import NavLayout from "./components/NavLayout";
 const App = () => {
   return (
     <BrowserRouter>
-      <NavLayout>
-        <Container>
-          <Suspense fallback={<div>Loading..</div>}>
+      <Suspense fallback={<LinearProgress />}>
+        <NavLayout>
+          <Container>
             <Routes>
               {
                 routes.map(({ id, path, Component }) => {
@@ -39,9 +39,9 @@ const App = () => {
               }
               <Route path="*" element={<PageNotFound />} />
             </Routes>
-          </Suspense>
-        </Container>
-      </NavLayout>
+          </Container>
+        </NavLayout>
+      </Suspense>
     </BrowserRouter>
   )
 }
