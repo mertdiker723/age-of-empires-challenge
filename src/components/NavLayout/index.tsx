@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import Navbar from '../Navbar';
 
 const NavLayout = ({ children }: PropsWithChildren) => {
-    let location = useLocation();
+    const location = useLocation();
     const routeItems: string[] = ["/", "/units", "/unitDetails"];
 
     return (

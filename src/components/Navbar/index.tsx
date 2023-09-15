@@ -10,7 +10,7 @@ import * as routes from "../../core/routes/ConstantRoute";
 import "./Style.scss";
 
 const Navbar = () => {
-    let location = useLocation();
+    const location = useLocation();
     const routeLabel = routes.routeObject.find(item => item.name === `/${location.pathname.split("/")[1]}`);
 
     return (

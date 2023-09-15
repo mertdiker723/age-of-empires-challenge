@@ -11,6 +11,7 @@ export const loadUnits = (type: string) => {
             .then(unit => {
                 dispatch(loadUnitsSuccess(type, unit as Unit[]));
             })
+            // eslint-disable-next-line no-console
             .catch(error => console.log("Error: ", error));
     };
 };

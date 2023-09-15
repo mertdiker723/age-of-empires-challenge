@@ -15,7 +15,6 @@ const AgesTabs = () => {
             type: "AGE", payload
         });
     };
-    console.log("asdas");
 
     return (
         <div className='age-tabs'>
