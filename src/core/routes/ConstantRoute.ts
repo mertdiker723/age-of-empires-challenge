@@ -1,8 +1,6 @@
-export const HOME = "/"
+export const HOME = "/";
 export const UNITS = '/units';
 export const UNIT_DETAILS = '/unitDetails/:id';
-
-
 
 export const routeObject = [
     {
@@ -20,4 +18,4 @@ export const routeObject = [
         name: "/unitDetails",
         label: "Unit Detail Page"
     },
-]
+];

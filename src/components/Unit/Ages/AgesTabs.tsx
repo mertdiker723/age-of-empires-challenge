@@ -10,11 +10,12 @@ const AgesTabs = () => {
         const payload = {
             ...stateString,
             age: value
-        }
+        };
         dispatch({
             type: "AGE", payload
-        })
-    }
+        });
+    };
+    console.log("asdas");
 
     return (
         <div className='age-tabs'>
@@ -27,11 +28,11 @@ const AgesTabs = () => {
                             key={item}>
                             {item}
                         </button>
-                    )
+                    );
                 })
             }
         </div>
-    )
-}
+    );
+};
 
-export default AgesTabs
+export default AgesTabs;

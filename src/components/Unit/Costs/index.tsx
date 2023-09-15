@@ -23,11 +23,11 @@ const Costs = () => {
                     [nameSlider]: newValue
                 }
             }
-        })
+        });
     }, 300);
 
     const handleSliderChange = (nameSlider: string, event: Event, newValue: number | number[]) => {
-        debouncedUpdateState(nameSlider, newValue)
+        debouncedUpdateState(nameSlider, newValue);
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,10 +38,10 @@ const Costs = () => {
                 ...stateString.checkbox,
                 [name]: event.target.checked
             }
-        }
+        };
         dispatch({
             type: "CHECKBOX", payload
-        })
+        });
     };
     const { foodSlider, goldSlider, woodSlider } = stateString.costs;
     return (
@@ -151,7 +151,7 @@ const Costs = () => {
                 </Grid>
             </Grid>
         </Grid>
-    )
-}
+    );
+};
 
-export default Costs
+export default Costs;

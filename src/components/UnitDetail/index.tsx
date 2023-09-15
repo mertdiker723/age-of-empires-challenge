@@ -1,8 +1,8 @@
-import { ReactNode } from 'react'
+import { ReactNode } from 'react';
 
 
 // Styles
-import "./Style.scss"
+import "./Style.scss";
 
 type UnitDetailTableProps = {
     renderUnits: [string, any][] | undefined;
@@ -20,19 +20,19 @@ const UnitDetailTable = ({ renderUnits }: UnitDetailTableProps) => {
                                 {costKey} {title}:
                                 <span className='text-item'>{costValue as ReactNode}</span>
                             </div>
-                        )
+                        );
                     })
                         : (
                             <div className='table-container_header' key={index}>
                                 {title}:
                                 <span className='text-item'>{value}</span>
                             </div>
-                        )
+                        );
                 })
             }
 
         </div>
-    )
-}
+    );
+};
 
-export default UnitDetailTable
+export default UnitDetailTable;

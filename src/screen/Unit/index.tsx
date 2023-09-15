@@ -1,8 +1,8 @@
 // Components
-import Ages from "../../components/Unit/Ages"
-import Costs from "../../components/Unit/Costs"
-import UnitTable from "../../components/Unit/UnitTable"
-import { UnitEditContextProvider } from "./unitContext"
+import Ages from "../../components/Unit/Ages";
+import Costs from "../../components/Unit/Costs";
+import UnitTable from "../../components/Unit/UnitTable";
+import { UnitEditContextProvider } from "./unitContext";
 
 const Unit = () => {
     return (
@@ -11,7 +11,7 @@ const Unit = () => {
             <Costs />
             <UnitTable />
         </UnitEditContextProvider>
-    )
-}
+    );
+};
 
-export default Unit
+export default Unit;

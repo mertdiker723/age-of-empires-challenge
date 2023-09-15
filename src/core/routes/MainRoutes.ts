@@ -21,6 +21,6 @@ const MainRoutes = [
         path: routes.UNIT_DETAILS,
         Component: UnitDetail,
     }
-]
+];
 
 export default MainRoutes;

@@ -7,7 +7,8 @@ import { Grid } from "@mui/material";
 import * as routes from "../../core/routes/ConstantRoute";
 
 // Assets
-import "./Style.scss"
+import "./Style.scss";
+
 const Navbar = () => {
     let location = useLocation();
     const routeLabel = routes.routeObject.find(item => item.name === `/${location.pathname.split("/")[1]}`);
@@ -23,7 +24,7 @@ const Navbar = () => {
                 </div>
             </Grid>
         </Grid>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;

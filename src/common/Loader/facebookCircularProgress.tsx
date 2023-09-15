@@ -35,6 +35,6 @@ const FacebookCircularProgress = (props: CircularProgressProps) => {
             />
         </Box>
     );
-}
+};
 
 export default FacebookCircularProgress;

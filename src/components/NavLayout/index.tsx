@@ -13,7 +13,7 @@ const NavLayout = ({ children }: PropsWithChildren) => {
             {routeItems.includes(`/${location.pathname.split("/")[1]}`) && <Navbar />}
             {children}
         </>
-    )
-}
+    );
+};
 
-export default NavLayout
+export default NavLayout;

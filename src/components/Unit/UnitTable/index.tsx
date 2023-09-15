@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 // Material UI
@@ -21,8 +21,8 @@ import { Cost } from "../../../core/types";
 import "./Style.scss";
 
 const UnitTable = () => {
-    const counter = useSelector((state: RootState) => state.unitReducer)
-    const dispatch: (action: any) => Promise<void> = useDispatch()
+    const counter = useSelector((state: RootState) => state.unitReducer);
+    const dispatch: (action: any) => Promise<void> = useDispatch();
 
     const { age, checkbox, costs } = useStateString();
     const { food, wood, gold } = checkbox;
@@ -30,7 +30,7 @@ const UnitTable = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        dispatch(loadUnits(Types.UNIT_READ_SUCCESS))
+        dispatch(loadUnits(Types.UNIT_READ_SUCCESS));
     }, [dispatch]);
 
     const filteredUnits = useMemo(() => {
@@ -46,7 +46,7 @@ const UnitTable = () => {
 
     const costRenderer = (item: Cost | undefined) => {
         if (!item) {
-            return "-"
+            return "-";
         }
         const parts = [];
         if (item.Wood) {
@@ -68,11 +68,11 @@ const UnitTable = () => {
             default:
                 return parts.join(',');
         }
-    }
+    };
 
     const linkUnitDetails = (id: number) => {
-        navigate(`/unitDetails/${id}`)
-    }
+        navigate(`/unitDetails/${id}`);
+    };
     return (
         <div className="unit-table-container">
             <div className="total-count">Unit Count: ({filteredUnits.length})</div>
@@ -113,5 +113,5 @@ const UnitTable = () => {
         </div>
 
     );
-}
+};
 export default UnitTable;

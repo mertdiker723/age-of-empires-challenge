@@ -37,7 +37,7 @@ class ErrorBoundaryInner extends Component<ErrorBoundaryInnerProps, ErrorBoundar
         const { children } = this.props;
 
         if (hasError) {
-            return <div className="errorboundary-container">There was an error</div>
+            return <div className="errorboundary-container">There was an error</div>;
         }
         return children;
     }

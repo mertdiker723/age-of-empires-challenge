@@ -34,7 +34,7 @@ const App = () => {
                         </ErrorBoundary>
                       }
                     />
-                  )
+                  );
                 })
               }
               <Route path="*" element={<PageNotFound />} />
@@ -43,7 +43,7 @@ const App = () => {
         </NavLayout>
       </Suspense>
     </BrowserRouter>
-  )
-}
+  );
+};
 
-export default App
+export default App;

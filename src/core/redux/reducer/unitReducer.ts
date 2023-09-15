@@ -12,4 +12,4 @@ export const unitReducer = (state: Unit[] = [], action: ActionType) => {
         default:
             return state;
     }
-}
+};

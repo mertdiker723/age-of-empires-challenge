@@ -34,13 +34,13 @@ const UnitDetail = () => {
     const fetchData = useCallback(async () => {
         setState({
             loading: true
-        })
+        });
         try {
             if (id) {
                 setState({
                     selectedUnit: await getSelectedUnit(+id),
                     loading: false
-                })
+                });
             }
         } catch (error) {
             if (error instanceof Error) {
@@ -70,7 +70,7 @@ const UnitDetail = () => {
         ];
         const renderUnits = selectedUnit && Object.entries(selectedUnit).filter(([key]) => !keysToExclude.includes(key));
         return renderUnits;
-    }, [selectedUnit])
+    }, [selectedUnit]);
 
     return (
         <>
@@ -92,7 +92,7 @@ const UnitDetail = () => {
             )}
             <UnitDetailTable renderUnits={filteredUnits()} />
         </>
-    )
-}
+    );
+};
 
-export default UnitDetail
+export default UnitDetail;

@@ -1,8 +1,8 @@
 // Material UI
-import { Grid, Typography } from "@mui/material"
+import { Grid, Typography } from "@mui/material";
 
 // Components
-import AgesTabs from "./AgesTabs"
+import AgesTabs from "./AgesTabs";
 
 // Assets
 import "./Style.scss";
@@ -17,7 +17,7 @@ const Ages = () => {
                 <AgesTabs />
             </Grid>
         </Grid>
-    )
-}
+    );
+};
 
-export default Ages
+export default Ages;

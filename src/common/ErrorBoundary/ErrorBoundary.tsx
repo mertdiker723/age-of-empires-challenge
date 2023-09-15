@@ -23,7 +23,7 @@ const ErrorBoundary = ({ children }: PropsWithChildren) => {
             {children}
         </ErrorBoundaryInner>
     );
-}
+};
 
 
 export default ErrorBoundary;
