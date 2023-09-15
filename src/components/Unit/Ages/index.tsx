@@ -11,7 +11,7 @@ const Ages = () => {
     return (
         <Grid container spacing={2} mt={2}>
             <Grid item xs={12}>
-                <Typography variant="h5" gutterBottom>
+                <Typography variant="h5" gutterBottom className="age-header">
                     Ages
                 </Typography>
                 <AgesTabs />

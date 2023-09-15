@@ -1,4 +1,3 @@
-import { useState } from 'react';
 // Material UI
 import { Box, Checkbox, Grid, Typography, debounce } from '@mui/material';
 
@@ -18,6 +17,7 @@ const Costs = () => {
     const debouncedUpdateState = debounce((nameSlider: string, newValue: number | number[]) => {
         dispatch({
             type: "SLIDER", payload: {
+                ...stateString,
                 costs: {
                     ...stateString.costs,
                     [nameSlider]: newValue
@@ -33,6 +33,7 @@ const Costs = () => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name } = event.target;
         const payload = {
+            ...stateString,
             checkbox: {
                 ...stateString.checkbox,
                 [name]: event.target.checked
@@ -42,7 +43,7 @@ const Costs = () => {
             type: "CHECKBOX", payload
         })
     };
-
+    const { foodSlider, goldSlider, woodSlider } = stateString.costs;
     return (
         <Grid container spacing={2} mt={2} className='cost-container'>
             <Grid item xs={12}>
@@ -66,7 +67,7 @@ const Costs = () => {
                             Wood
                         </label>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={10}>
+                    <Grid item xs={12} sm={12} md={10} display="flex" alignItems="center">
                         <Box sx={{ width: 320 }}>
                             <PrettoSlider
                                 valueLabelDisplay="auto"
@@ -76,8 +77,12 @@ const Costs = () => {
                                 max={200}
                                 disabled={!stateString.checkbox?.wood}
                                 min={0}
-
                             />
+                        </Box>
+                        <Box sx={{ ml: 2 }}>
+                            <Typography variant="subtitle2" display="block" gutterBottom className='cost-count'>
+                                {woodSlider} - 200
+                            </Typography>
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={12} md={2} display="flex" alignItems="center">
@@ -93,7 +98,7 @@ const Costs = () => {
                             Food
                         </label>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={10}>
+                    <Grid item xs={12} sm={12} md={10} display="flex" alignItems="center">
                         <Box sx={{ width: 320 }}>
                             <PrettoSlider
                                 valueLabelDisplay="auto"
@@ -105,6 +110,11 @@ const Costs = () => {
                                 min={0}
 
                             />
+                        </Box>
+                        <Box sx={{ ml: 2 }}>
+                            <Typography variant="subtitle2" display="block" gutterBottom className='cost-count'>
+                                {foodSlider} - 200
+                            </Typography>
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={12} md={2} display="flex" alignItems="center">
@@ -120,7 +130,7 @@ const Costs = () => {
                             Gold
                         </label>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={10}>
+                    <Grid item xs={12} sm={12} md={10} display="flex" alignItems="center">
                         <Box sx={{ width: 320 }}>
                             <PrettoSlider
                                 valueLabelDisplay="auto"
@@ -131,6 +141,11 @@ const Costs = () => {
                                 disabled={!stateString.checkbox?.gold}
                                 min={0}
                             />
+                        </Box>
+                        <Box sx={{ ml: 2 }}>
+                            <Typography variant="subtitle2" display="block" gutterBottom className='cost-count'>
+                                {goldSlider} - 200
+                            </Typography>
                         </Box>
                     </Grid>
                 </Grid>

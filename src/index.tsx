@@ -4,6 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import configureStore from './core/redux/reducer/configureStore';
+import './assets/global/global.scss'
 
 const store = configureStore();
 

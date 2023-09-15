@@ -14,10 +14,12 @@ const AgesTabs = () => {
     const ages: string[] = ["All", "Dark", "Feudal", "Castle", "Imperial"];
 
     const onSelectAge = (value: string) => {
+        const payload = {
+            ...stateString,
+            age: value
+        }
         dispatch({
-            type: "AGE", payload: {
-                age: value
-            }
+            type: "AGE", payload
         })
     }
 

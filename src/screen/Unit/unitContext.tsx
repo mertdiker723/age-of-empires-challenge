@@ -1,16 +1,16 @@
 import { Fragment, createContext, useContext, useReducer } from "react";
 
 export type InitialStateType = {
-    age?: string;
-    checkbox?: {
-        wood?: boolean,
-        food?: boolean,
-        gold?: boolean
+    age: string;
+    checkbox: {
+        wood: boolean,
+        food: boolean,
+        gold: boolean
     };
-    costs?: {
-        woodSlider?: number,
-        foodSlider?: number,
-        goldSlider?: number,
+    costs: {
+        woodSlider: number,
+        foodSlider: number,
+        goldSlider: number,
     }
 };
 
@@ -28,7 +28,7 @@ const initialState: InitialStateType = {
     }
 };
 
-const StringContext = createContext<InitialStateType | undefined>(undefined);
+const StringContext = createContext<InitialStateType | undefined>(initialState);
 const DispatchContext = createContext<React.Dispatch<{ type: string; payload: InitialStateType }>>(() => { });
 
 const unitEditReducer = (state: InitialStateType, action: { type: string; payload: InitialStateType }): InitialStateType => {
