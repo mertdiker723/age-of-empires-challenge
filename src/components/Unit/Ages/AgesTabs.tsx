@@ -1,14 +1,14 @@
-import { useStateDispatch, useStateString } from "../../../screen/Unit/unitContext";
+import { useStateDispatch, useUnitState } from "../../../screen/Unit/unitContext";
 
 const AgesTabs = () => {
     const dispatch = useStateDispatch();
-    const stateString = useStateString();
+    const stateUnit = useUnitState();
 
     const ages: string[] = ["All", "Dark", "Feudal", "Castle", "Imperial"];
 
     const onSelectAge = (value: string) => {
         const payload = {
-            ...stateString,
+            ...stateUnit,
             age: value
         };
         dispatch({
@@ -23,7 +23,7 @@ const AgesTabs = () => {
                     return (
                         <button
                             onClick={() => onSelectAge(item)}
-                            className={`age-tabs_item ${item === stateString.age ? 'selected' : ''}`}
+                            className={`age-tabs_item ${item === stateUnit.age ? 'selected' : ''}`}
                             key={item}>
                             {item}
                         </button>

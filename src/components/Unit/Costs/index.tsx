@@ -2,7 +2,7 @@
 import { Box, Checkbox, Grid, Typography, debounce } from '@mui/material';
 
 // Screen
-import { useStateDispatch, useStateString } from '../../../screen/Unit/unitContext';
+import { useStateDispatch, useUnitState } from '../../../screen/Unit/unitContext';
 
 // Assest & Styles
 import { PrettoSlider } from '../../../assets/MuiStyleComponents/style';
@@ -11,15 +11,15 @@ import "./Style.scss";
 const Costs = () => {
     // Context
     const dispatch = useStateDispatch();
-    const stateString = useStateString();
+    const stateUnit = useUnitState();
 
 
     const debouncedUpdateState = debounce((nameSlider: string, newValue: number | number[]) => {
         dispatch({
             type: "SLIDER", payload: {
-                ...stateString,
+                ...stateUnit,
                 costs: {
-                    ...stateString.costs,
+                    ...stateUnit.costs,
                     [nameSlider]: newValue
                 }
             }
@@ -33,9 +33,9 @@ const Costs = () => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name } = event.target;
         const payload = {
-            ...stateString,
+            ...stateUnit,
             checkbox: {
-                ...stateString.checkbox,
+                ...stateUnit.checkbox,
                 [name]: event.target.checked
             }
         };
@@ -43,7 +43,7 @@ const Costs = () => {
             type: "CHECKBOX", payload
         });
     };
-    const { foodSlider, goldSlider, woodSlider } = stateString.costs;
+    const { foodSlider, goldSlider, woodSlider } = stateUnit.costs;
     return (
         <Grid container spacing={2} mt={2} className='cost-container'>
             <Grid item xs={12}>
@@ -56,7 +56,7 @@ const Costs = () => {
                 <Grid container>
                     <Grid item xs={12} sm={12} md={2} display="flex" alignItems="center">
                         <Checkbox
-                            checked={stateString.checkbox?.wood}
+                            checked={stateUnit.checkbox?.wood}
                             onChange={handleChange}
                             name="wood"
                             color="default"
@@ -75,7 +75,7 @@ const Costs = () => {
                                 onChange={(event, newValue) => handleSliderChange("woodSlider", event, newValue)}
                                 name='woodSlider'
                                 max={200}
-                                disabled={!stateString.checkbox?.wood}
+                                disabled={!stateUnit.checkbox?.wood}
                                 min={0}
                             />
                         </Box>
@@ -87,7 +87,7 @@ const Costs = () => {
                     </Grid>
                     <Grid item xs={12} sm={12} md={2} display="flex" alignItems="center">
                         <Checkbox
-                            checked={stateString.checkbox?.food}
+                            checked={stateUnit.checkbox?.food}
                             onChange={handleChange}
                             color="default"
                             name='food'
@@ -106,7 +106,7 @@ const Costs = () => {
                                 name='foodSlider'
                                 onChange={(event, newValue) => handleSliderChange("foodSlider", event, newValue)}
                                 max={200}
-                                disabled={!stateString.checkbox?.food}
+                                disabled={!stateUnit.checkbox?.food}
                                 min={0}
 
                             />
@@ -119,7 +119,7 @@ const Costs = () => {
                     </Grid>
                     <Grid item xs={12} sm={12} md={2} display="flex" alignItems="center">
                         <Checkbox
-                            checked={stateString.checkbox?.gold}
+                            checked={stateUnit.checkbox?.gold}
                             onChange={handleChange}
                             color="default"
                             name="gold"
@@ -138,7 +138,7 @@ const Costs = () => {
                                 name='goldSlider'
                                 onChange={(event, newValue) => handleSliderChange("goldSlider", event, newValue)}
                                 max={200}
-                                disabled={!stateString.checkbox?.gold}
+                                disabled={!stateUnit.checkbox?.gold}
                                 min={0}
                             />
                         </Box>

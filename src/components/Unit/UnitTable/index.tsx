@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Box } from '@mui/material';
 
 // Screen
-import { useStateString } from "../../../screen/Unit/unitContext";
+import { useUnitState } from "../../../screen/Unit/unitContext";
 
 // Common
 import FacebookCircularProgress from "../../../common/Loader/facebookCircularProgress";
@@ -24,7 +24,7 @@ const UnitTable = () => {
     const counter = useSelector((state: RootState) => state.unitReducer);
     const dispatch: (action: any) => Promise<void> = useDispatch();
 
-    const { age, checkbox, costs } = useStateString();
+    const { age, checkbox, costs } = useUnitState();
     const { food, wood, gold } = checkbox;
 
     const navigate = useNavigate();

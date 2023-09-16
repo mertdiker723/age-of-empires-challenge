@@ -28,7 +28,7 @@ const initialState: InitialStateType = {
     }
 };
 
-const StringContext = createContext<InitialStateType | undefined>(initialState);
+const UnitContext = createContext<InitialStateType | undefined>(initialState);
 const DispatchContext = createContext<React.Dispatch<{ type: string; payload: InitialStateType }>>(() => { });
 
 const unitEditReducer = (state: InitialStateType, action: { type: string; payload: InitialStateType }): InitialStateType => {
@@ -53,20 +53,20 @@ export const UnitEditContextProvider = ({ children }: { children: React.ReactNod
     const [state, dispatch] = useReducer(unitEditReducer, initialState);
 
     return (
-        <StringContext.Provider value={state}>
+        <UnitContext.Provider value={state}>
             <DispatchContext.Provider value={dispatch}>
                 {children.map((child, index) => (
                     <Fragment key={index}>{child}</Fragment>
                 ))}
             </DispatchContext.Provider>
-        </StringContext.Provider>
+        </UnitContext.Provider>
     );
 };
 
-export function useStateString() {
-    const context = useContext(StringContext);
+export function useUnitState() {
+    const context = useContext(UnitContext);
     if (context === undefined) {
-        throw new Error("useStateString must be used within a UnitEditContext");
+        throw new Error("useUnitState must be used within a UnitEditContext");
     }
     return context;
 }
