@@ -68,7 +68,7 @@ const UnitDetail = () => {
             "armor",
             "blast_radius"
         ];
-        const renderUnits = selectedUnit && Object.entries(selectedUnit).filter(([key]) => !keysToExclude.includes(key));
+        const renderUnits: [string, Unit][] | undefined = selectedUnit && Object.entries(selectedUnit).filter(([key]) => !keysToExclude.includes(key));
         return renderUnits;
     }, [selectedUnit]);
 

@@ -1,53 +1,50 @@
 .unit-table-container {
+  .total-count {
+    display: flex;
+    justify-content: flex-end;
+    font-family: ComicNeueBold;
+    margin-top: 10px;
+  }
 
-    .total-count {
-        display: flex;
-        justify-content: flex-end;
-        font-family: ComicNeueBold;
-        margin-top: 10px;
-    }
+  .unit-table-container {
+    margin-top: 20px;
+    font-family: ComicNeueBold;
 
-    .unit-table-container {
-        margin-top: 20px;
-        font-family: ComicNeueBold;
+    .table {
+      border: 1px solid black;
+      width: 100%;
+      border-collapse: collapse;
 
-        .table {
-            border: 1px solid black;
-            width: 100%;
-            border-collapse: collapse;
+      .unit-table-header-row {
+        cursor: pointer;
+        user-select: none;
+        border: 1px solid black;
 
-            .unit-table-header-row {
-                cursor: pointer;
-                user-select: none;
-                border: 1px solid black;
-
-                &_item {
-                    border-right: 1px solid black;
-                    border-bottom: 3px solid black;
-                    padding: 5px 10px 5px 10px;
-                    font-size: 28px;
-                    font-weight: 1000;
-                }
-            }
-
-            .unit-table-body-row {
-                cursor: pointer;
-                user-select: none;
-                border: 1px solid black;
-                transition: 0.2s background-color;
-
-                &_item {
-                    border-right: 1px solid black;
-                    padding: 5px 10px 5px 10px;
-                    font-size: 20px;
-                }
-
-                &:hover {
-                    background-color: rgb(240, 240, 240);
-                }
-            }
-
+        &_item {
+          border: 1px solid rgb(168, 168, 168);
+          border-bottom: 3px solid black;
+          padding: 5px 10px 5px 10px;
+          font-size: 28px;
+          font-weight: 1000;
         }
-    }
+      }
 
+      .unit-table-body-row {
+        cursor: pointer;
+        user-select: none;
+        border: 1px solid rgb(168, 168, 168);
+        transition: 0.2s background-color;
+
+        &_item {
+          border-right: 1px solid rgb(168, 168, 168);
+          padding: 5px 10px 5px 10px;
+          font-size: 20px;
+        }
+
+        &:hover {
+          background-color: rgb(240, 240, 240);
+        }
+      }
+    }
+  }
 }

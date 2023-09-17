@@ -1,5 +1,8 @@
+import _ from 'lodash';
+
 // Material UI
-import { Box, Checkbox, Grid, Typography, debounce } from '@mui/material';
+import { Box, Checkbox, Grid, Typography, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 // Screen
 import { useStateDispatch, useUnitState } from '../../../screen/Unit/unitContext';
@@ -13,8 +16,10 @@ const Costs = () => {
     const dispatch = useStateDispatch();
     const stateUnit = useUnitState();
 
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.down('md')) as boolean;
 
-    const debouncedUpdateState = debounce((nameSlider: string, newValue: number | number[]) => {
+    const debouncedUpdateState = _.debounce((nameSlider: string, newValue: number | number[]) => {
         dispatch({
             type: "SLIDER", payload: {
                 ...stateUnit,
@@ -83,6 +88,9 @@ const Costs = () => {
                             <Typography variant="subtitle2" display="block" gutterBottom className='cost-count'>
                                 {woodSlider} - 200
                             </Typography>
+                        </Box>
+                        <Box sx={{ ml: 2, display: matches ? "none" : "block" }}>
+                            <div className='restricted-information'> Min: 0; Max: 200</div>
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={12} md={2} display="flex" alignItems="center">

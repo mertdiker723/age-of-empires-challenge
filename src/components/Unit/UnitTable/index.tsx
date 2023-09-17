@@ -15,7 +15,7 @@ import FacebookCircularProgress from "../../../common/Loader/facebookCircularPro
 import { Types } from '../../../core/redux/action/actionTypes';
 import { loadUnits } from '../../../core/redux/action/unitAction';
 import { RootState } from '../../../core/redux/reducer';
-import { Cost } from "../../../core/types";
+import { Cost, Unit } from "../../../core/types";
 
 // Assets & Styles
 import "./Style.scss";
@@ -84,28 +84,16 @@ const UnitTable = () => {
                 ) : (
                     <div className="unit-table-container">
                         <table className="table">
-                            <thead>
-                                <tr className="unit-table-header-row">
-                                    <th className="unit-table-header-row_item" scope="col">id</th>
-                                    <th className="unit-table-header-row_item" scope="col">name</th>
-                                    <th className="unit-table-header-row_item" scope="col">age</th>
-                                    <th className="unit-table-header-row_item" scope="col">costs</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {filteredUnits.map((row) => (
-                                    <tr
-                                        key={row.id}
-                                        className="unit-table-body-row"
-                                        onClick={() => linkUnitDetails(row.id)}
-                                    >
-                                        <td className="unit-table-body-row_item" align="left">{row.id}</td>
-                                        <td className="unit-table-body-row_item" align="center">{row.name}</td>
-                                        <td className="unit-table-body-row_item" align="center">{row.age}</td>
-                                        <td className="unit-table-body-row_item" align="center">{costRenderer(row.cost)}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
+                            <UnitTableHead
+                                headItems={["id", "name", "age", "costs"]}
+                                rowClassName="unit-table-header-row_item"
+                            />
+                            <UnitTableBody
+                                filteredUnits={filteredUnits}
+                                linkUnitDetails={linkUnitDetails}
+                                costRenderer={costRenderer}
+                                rowClassName="unit-table-body-row_item"
+                            />
                         </table>
                     </div>
                 )
@@ -114,4 +102,52 @@ const UnitTable = () => {
 
     );
 };
+
+type UnitTableHead = {
+    headItems: string[],
+    rowClassName: string;
+}
+
+const UnitTableHead = ({ headItems, rowClassName }: UnitTableHead) => {
+    return (
+        <thead>
+            <tr className="unit-table-header-row">
+                {
+                    headItems.map((item, index) => {
+                        return (
+                            <th key={index} className={rowClassName} scope="col">{item}</th>
+                        );
+                    })
+                }
+            </tr>
+        </thead>
+    );
+};
+
+type UnitTableBody = {
+    filteredUnits: Unit[],
+    linkUnitDetails: (id: number) => void;
+    costRenderer: (item: Cost | undefined) => string;
+    rowClassName: string;
+}
+
+const UnitTableBody = ({ filteredUnits, linkUnitDetails, costRenderer, rowClassName }: UnitTableBody) => {
+    return (
+        <tbody>
+            {filteredUnits.map((row) => (
+                <tr
+                    key={row.id}
+                    className="unit-table-body-row"
+                    onClick={() => linkUnitDetails(row.id)}
+                >
+                    <td className={rowClassName} align="center">{row.id}</td>
+                    <td className={rowClassName} align="center">{row.name}</td>
+                    <td className={rowClassName} align="center">{row.age}</td>
+                    <td className={rowClassName} align="center">{costRenderer(row.cost)}</td>
+                </tr>
+            ))}
+        </tbody>
+    );
+};
+
 export default UnitTable;

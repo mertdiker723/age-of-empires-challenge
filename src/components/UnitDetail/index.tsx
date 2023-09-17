@@ -1,11 +1,13 @@
 import { ReactNode } from 'react';
 
+// Core
+import { Unit } from '../../core/types';
 
 // Styles
 import "./Style.scss";
 
 type UnitDetailTableProps = {
-    renderUnits: [string, any][] | undefined;
+    renderUnits: [string, Unit][] | undefined;
 }
 const UnitDetailTable = ({ renderUnits }: UnitDetailTableProps) => {
     return (
